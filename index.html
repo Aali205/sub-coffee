@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>صُب | قهوة مختصة — دمشق</title>
+    <meta
+      name="description"
+      content="صُب SUB Coffee — قهوة مختصة في دمشق، ساحة المحافظة. V60، سبانيش لاتيه، سموذي مانغا. مفتوح كل يوم من ٩ الصبح لـ ١ بالليل."
+    />
+    <meta name="theme-color" content="#0D6E74" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta property="og:title" content="صُب | SUB Specialty Coffee — Damascus" />
+    <meta
+      property="og:description"
+      content="Pour it. Let the coffee talk. Specialty coffee at Al-Muhafaza Square, Damascus."
+    />
+    <meta property="og:image" content="./images/logo-original.jpg" />
+    <meta property="og:type" content="website" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CafeOrCoffeeShop",
+        "name": "صُب SUB Coffee",
+        "servesCuisine": "Specialty Coffee",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "29 Ayar St, Al-Muhafaza Square",
+          "addressLocality": "Damascus",
+          "addressCountry": "SY"
+        },
+        "openingHours": "Mo-Su 09:00-01:00",
+        "sameAs": ["https://www.instagram.com/subcoffee1/"]
+      }
+    </script>
+  </head>
+  <body class="is-loading">
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="cursor" aria-hidden="true">
+      <span class="cursor-ring"><span class="cursor-label"></span></span>
+      <span class="cursor-dot"></span>
+    </div>
+
+    <div class="progress" aria-hidden="true"><span></span></div>
+
+    <!-- Loader -->
+    <div class="loader" aria-hidden="true">
+      <div class="loader-fill">
+        <svg
+          class="loader-wave"
+          viewBox="0 0 1200 60"
+          preserveAspectRatio="none"
+        >
+          <path d="M0 30 Q150 0 300 30 T600 30 T900 30 T1200 30 V60 H0Z" />
+        </svg>
+      </div>
+      <div class="loader-inner">
+        <div class="loader-logo" data-logo></div>
+        <div class="loader-meta">
+          <span class="loader-count">0</span>
+          <span class="loader-tag" data-i18n="loader.tag">نحضّر كوبك…</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="nav">
+      <a
+        href="#top"
+        class="nav-brand"
+        aria-label="SUB Coffee"
+        data-logo
+        data-cursor="hover"
+      ></a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="#story" data-i18n="nav.story" data-cursor="hover">الحكاية</a>
+        <a href="#signature" data-i18n="nav.signature" data-cursor="hover"
+          >المميّز</a
+        >
+        <a href="#menu" data-i18n="nav.menu" data-cursor="hover">المنيو</a>
+        <a href="#visit" data-i18n="nav.visit" data-cursor="hover">زورنا</a>
+      </nav>
+      <div class="nav-actions">
+        <button
+          class="lang-btn"
+          type="button"
+          data-i18n="nav.lang"
+          data-cursor="hover"
+        >
+          EN
+        </button>
+        <a
+          href="#visit"
+          class="btn btn-cream btn-sm magnetic"
+          data-cursor="hover"
+          ><span data-i18n="nav.cta">تعال صُب</span></a
+        >
+        <button
+          class="burger"
+          type="button"
+          aria-label="Menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="mobile-nav" aria-hidden="true">
+      <nav>
+        <a href="#story" data-i18n="nav.story">الحكاية</a>
+        <a href="#signature" data-i18n="nav.signature">المميّز</a>
+        <a href="#menu" data-i18n="nav.menu">المنيو</a>
+        <a href="#visit" data-i18n="nav.visit">زورنا</a>
+      </nav>
+      <div class="mobile-nav-foot">
+        <span data-i18n="visit.hours">كل يوم · ٩:٠٠ ص — ١:٠٠ ليلاً</span>
+        <a
+          href="https://www.instagram.com/subcoffee1/"
+          target="_blank"
+          rel="noopener"
+          >@subcoffee1</a
+        >
+      </div>
+    </div>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero" id="top">
+        <div class="hero-light" aria-hidden="true">
+          <span class="sun"></span>
+          <svg class="leaves" viewBox="0 0 800 800">
+            <g fill="#000">
+              <path
+                d="M120 60C220 40 300 120 280 220C180 240 100 160 120 60Z"
+              />
+              <path
+                d="M300 180C420 170 480 260 450 350C340 360 280 280 300 180Z"
+              />
+              <path
+                d="M60 300C160 290 220 370 200 460C100 470 40 400 60 300Z"
+              />
+              <path
+                d="M520 40C620 60 660 150 610 230C520 210 480 120 520 40Z"
+              />
+              <path
+                d="M600 300C700 330 720 420 660 490C580 460 560 370 600 300Z"
+              />
+              <path
+                d="M260 480C360 490 400 580 350 650C260 630 230 550 260 480Z"
+              />
+            </g>
+          </svg>
+          <span class="window"></span>
+        </div>
+        <div class="hero-beans" aria-hidden="true"></div>
+
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">
+              <span class="dot"></span
+              ><span data-i18n="hero.eyebrow">قهوة مختصة · دمشق</span>
+            </p>
+            <h1 class="hero-title" data-i18n-html="hero.title" data-split>
+              صُبّ،<br />وخلّي القهوة <em>تحكي.</em>
+            </h1>
+            <p class="hero-sub" data-i18n="hero.sub">
+              من الحبّة للكوب، كل رشفة إلها حكاية.
+            </p>
+            <div class="hero-ctas">
+              <a href="#menu" class="btn btn-cream magnetic" data-cursor="pour"
+                ><span data-i18n="hero.cta1">شوف المنيو</span><i data-arrow></i
+              ></a>
+              <a
+                href="#visit"
+                class="btn btn-ghost magnetic"
+                data-cursor="hover"
+                ><span data-i18n="hero.cta2">وين نحنا؟</span></a
+              >
+            </div>
+            <div class="status-chip" data-status>
+              <span class="pulse"></span><span class="status-text"></span>
+            </div>
+          </div>
+          <div class="hero-art">
+            <div class="hero-scene" data-pour></div>
+            <div class="badge" aria-hidden="true">
+              <svg viewBox="0 0 200 200">
+                <defs>
+                  <path
+                    id="badgeCircle"
+                    d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"
+                  />
+                </defs>
+                <text>
+                  <textPath href="#badgeCircle" data-i18n="hero.badge">
+                    قهوة مختصة • صُب • دمشق • حمص •
+                  </textPath>
+                </text>
+              </svg>
+              <div class="badge-bean" data-bean></div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#story" class="hero-scroll" data-cursor="hover"
+          ><span class="line"></span
+          ><span data-i18n="hero.scroll">انزل لتحت</span></a
+        >
+      </section>
+
+      <!-- Marquee -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track" data-marquee></div>
+      </div>
+
+      <!-- Story -->
+      <section class="story" id="story">
+        <div class="story-logo" data-logo></div>
+        <div class="container">
+          <p class="kicker" data-i18n="story.kicker">٠١ — الحكاية</p>
+          <p class="story-text" data-i18n="story.text" data-scrub></p>
+        </div>
+      </section>
+
+      <!-- Signature scrollytelling -->
+      <section class="sig" id="signature">
+        <div class="sig-pin">
+          <div class="sig-bg"></div>
+          <div class="container sig-grid">
+            <div class="sig-head">
+              <p class="kicker" data-i18n="sig.kicker">٠٢ — مشروبات مميّزة</p>
+              <h2 class="sig-title" data-i18n="sig.title">توقيع صُب</h2>
+            </div>
+            <div class="sig-texts" data-sig-texts></div>
+            <div class="sig-cup" data-cup></div>
+            <div class="sig-index">
+              <span class="sig-num">01</span><span class="sig-of">/ 03</span>
+              <span class="sig-bar"><span></span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Journey -->
+      <section class="journey">
+        <div class="journey-pin">
+          <div class="container journey-head">
+            <p class="kicker" data-i18n="journey.kicker">
+              ٠٣ — من الحبّة للكوب
+            </p>
+            <h2 class="h2" data-i18n="journey.title">رحلة الرشفة</h2>
+          </div>
+          <div class="journey-track" data-journey></div>
+        </div>
+      </section>
+
+      <!-- Menu -->
+      <section class="menu" id="menu">
+        <div class="container">
+          <div class="section-head">
+            <p class="kicker" data-i18n="menu.kicker">٠٤ — المنيو</p>
+            <h2 class="h2 reveal-lines" data-i18n="menu.title" data-split>
+              شو بتحب تشرب اليوم؟
+            </h2>
+          </div>
+          <div class="tabs" role="tablist" data-tabs></div>
+          <div class="menu-grid" data-menu></div>
+          <p class="menu-note" data-i18n="menu.note"></p>
+        </div>
+      </section>
+
+      <!-- Stats -->
+      <section class="stats">
+        <div class="container stats-grid">
+          <div class="stat">
+            <span class="stat-num"><span data-count="8056">0</span></span
+            ><span class="stat-label" data-i18n="stats.1"></span>
+          </div>
+          <div class="stat">
+            <span class="stat-num"><span data-count="2">0</span></span
+            ><span class="stat-label" data-i18n="stats.2"></span>
+          </div>
+          <div class="stat">
+            <span class="stat-num"><span data-count="16">0</span></span
+            ><span class="stat-label" data-i18n="stats.3"></span>
+          </div>
+          <div class="stat stat-quote">
+            <span class="stat-big" data-i18n="stats.4.big"></span
+            ><span class="stat-label" data-i18n="stats.4"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Visit -->
+      <section class="visit" id="visit">
+        <div class="container visit-grid">
+          <div class="visit-copy">
+            <p class="kicker" data-i18n="visit.kicker">٠٥ — زورنا</p>
+            <h2
+              class="h2 visit-title"
+              data-i18n-html="visit.title"
+              data-split
+            ></h2>
+            <p class="visit-hours">
+              <i data-clock></i><span data-i18n="visit.hours"></span>
+            </p>
+            <div class="status-chip status-chip--dark" data-status>
+              <span class="pulse"></span><span class="status-text"></span>
+            </div>
+          </div>
+          <div class="branches">
+            <article class="branch branch--main tilt" data-cursor="hover">
+              <div class="branch-top">
+                <span class="branch-tag" data-i18n="visit.main"></span
+                ><i data-pin></i>
+              </div>
+              <h3 data-i18n="visit.dam.city">دمشق</h3>
+              <p data-i18n="visit.dam.addr"></p>
+              <a
+                class="btn btn-cream btn-sm magnetic"
+                target="_blank"
+                rel="noopener"
+                data-map="dam"
+                ><span data-i18n="visit.dir"></span><i data-arrow></i
+              ></a>
+              <div class="branch-map" aria-hidden="true">
+                <svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice">
+                  <g
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    opacity=".35"
+                  >
+                    <path d="M-10 60 Q120 90 210 70 T420 90" />
+                    <path d="M-10 150 Q140 120 230 160 T420 140" />
+                    <path d="M90 -10 Q110 100 70 230" />
+                    <path d="M290 -10 Q260 110 320 230" />
+                    <path d="M180 -10 L200 230" />
+                  </g>
+                  <circle
+                    cx="200"
+                    cy="112"
+                    r="26"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    opacity=".5"
+                  />
+                  <circle
+                    class="ping"
+                    cx="200"
+                    cy="112"
+                    r="8"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+            </article>
+            <article class="branch tilt" data-cursor="hover">
+              <div class="branch-top">
+                <span class="branch-tag">02</span><i data-pin></i>
+              </div>
+              <h3 data-i18n="visit.homs.city">حمص</h3>
+              <p data-i18n="visit.homs.addr"></p>
+              <a
+                class="btn btn-ghost-dark btn-sm magnetic"
+                target="_blank"
+                rel="noopener"
+                data-map="homs"
+                ><span data-i18n="visit.dir"></span><i data-arrow></i
+              ></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Instagram -->
+      <section class="ig">
+        <div class="container">
+          <div class="section-head section-head--row">
+            <div>
+              <p class="kicker" data-i18n="ig.kicker">٠٦ — إنستغرام</p>
+              <h2 class="h2" data-i18n="ig.title" data-split>تابع الصبّة</h2>
+            </div>
+            <a
+              href="https://www.instagram.com/subcoffee1/"
+              target="_blank"
+              rel="noopener"
+              class="ig-handle magnetic"
+              data-cursor="hover"
+              ><i data-ig></i>@subcoffee1</a
+            >
+          </div>
+          <div class="ig-grid" data-ig-grid></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <p class="footer-line" data-i18n="footer.line"></p>
+          <div class="footer-links">
+            <a
+              href="https://www.instagram.com/subcoffee1/"
+              target="_blank"
+              rel="noopener"
+              data-cursor="hover"
+              ><i data-ig></i>Instagram</a
+            >
+            <a href="#top" data-cursor="hover" data-i18n="footer.top">لفوق</a>
+          </div>
+        </div>
+        <div class="footer-logo" data-logo></div>
+        <div class="footer-bottom">
+          <span>© <span data-year></span> SUB Coffee — صُب</span>
+          <span data-i18n="visit.hours"></span>
+          <span data-i18n="footer.made"></span>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
