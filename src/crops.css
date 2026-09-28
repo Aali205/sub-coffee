@@ -513,6 +513,8 @@
 
 /* Shop grid ----------------------------------------------- */
 .shop {
+  position: relative;
+  z-index: 1;
   background: var(--cream-2);
   color: var(--teal-3);
   padding-block: clamp(6rem, 12vw, 10rem);

@@ -366,6 +366,8 @@ function movePill(animate = true) {
     : gsap.set(pill, { ...props, left: 0, top: 0 });
 }
 
+let flipRun; // the grid's in-flight Flip, if any
+
 function filterShop(origin) {
   if (origin === activeOrigin) return;
   activeOrigin = origin;
@@ -376,15 +378,41 @@ function filterShop(origin) {
   });
   movePill();
 
+  const grid = $('[data-grid]');
   const items = $$('.crop');
+  // Capture where cards are right now (mid-flight if the last filter is still
+  // running), then finish that run so every card is back in normal flow.
   const state = Flip.getState(items);
+  const from = grid.getBoundingClientRect().height;
+  flipRun?.progress(1);
+  gsap.killTweensOf(grid);
+  gsap.set(grid, { clearProps: 'height' });
   items.forEach((it) =>
     it.classList.toggle(
       'is-hidden',
       origin !== 'all' && it.dataset.origin !== origin,
     ),
   );
-  Flip.from(state, {
+  // The card stagger outlasts the height tween, so the height is only released
+  // once the Flip itself has finished.
+  const release = () => {
+    gsap.set(grid, { clearProps: 'height' });
+    ScrollTrigger.refresh();
+  };
+  // Flip lifts the cards out of flow while they move, which would collapse the
+  // grid and let the section below jump up over them. Hold the height and ease
+  // it to the new size instead.
+  const to = grid.offsetHeight;
+  gsap.fromTo(
+    grid,
+    { height: from },
+    {
+      height: to,
+      duration: 0.75,
+      ease: 'power3.inOut',
+    },
+  );
+  flipRun = Flip.from(state, {
     duration: 0.75,
     ease: 'power3.inOut',
     stagger: 0.02,
@@ -404,7 +432,7 @@ function filterShop(origin) {
         },
       ),
     onLeave: (els) => gsap.to(els, { opacity: 0, scale: 0.85, duration: 0.35 }),
-    onComplete: () => ScrollTrigger.refresh(),
+    onComplete: release,
   });
 }
 

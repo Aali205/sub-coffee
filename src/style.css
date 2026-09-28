@@ -1182,6 +1182,8 @@ em {
    Menu
    ========================================================= */
 .menu {
+  position: relative;
+  z-index: 1;
   background: var(--cream);
   color: var(--teal-3);
   padding-block: clamp(6rem, 12vw, 10rem);

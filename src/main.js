@@ -358,6 +358,8 @@ function movePill(animate = true) {
     : gsap.set(pill, { ...props, left: 0, top: 0 });
 }
 
+let flipRun; // the menu's in-flight Flip, if any
+
 function filterMenu(cat) {
   if (cat === activeCat) return;
   activeCat = cat;
@@ -368,12 +370,37 @@ function filterMenu(cat) {
   });
   movePill();
 
+  const grid = $('[data-menu]');
   const items = $$('.item');
+  // Capture where cards are right now (mid-flight if the last filter is still
+  // running), then finish that run so every card is back in normal flow.
   const state = Flip.getState(items);
+  const from = grid.getBoundingClientRect().height;
+  flipRun?.progress(1);
+  gsap.killTweensOf(grid);
+  gsap.set(grid, { clearProps: 'height' });
   items.forEach((it) =>
     it.classList.toggle('is-hidden', cat !== 'all' && it.dataset.cat !== cat),
   );
-  Flip.from(state, {
+  // The card stagger outlasts the height tween, so the height is only released
+  // once the Flip itself has finished.
+  const release = () => {
+    gsap.set(grid, { clearProps: 'height' });
+    ScrollTrigger.refresh();
+  };
+  // Hold the grid's height while Flip moves the cards out of flow, so the
+  // section below doesn't jump up over them.
+  const to = grid.offsetHeight;
+  gsap.fromTo(
+    grid,
+    { height: from },
+    {
+      height: to,
+      duration: 0.7,
+      ease: 'power3.inOut',
+    },
+  );
+  flipRun = Flip.from(state, {
     duration: 0.7,
     ease: 'power3.inOut',
     stagger: 0.03,
@@ -393,7 +420,7 @@ function filterMenu(cat) {
         },
       ),
     onLeave: (els) => gsap.to(els, { opacity: 0, scale: 0.85, duration: 0.35 }),
-    onComplete: () => ScrollTrigger.refresh(),
+    onComplete: release,
   });
 }
 
