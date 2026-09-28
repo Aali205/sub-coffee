@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>محاصيل صُب | حبوب قهوة مختصة — دمشق</title>
+    <meta
+      name="description"
+      content="محاصيل صُب — ٣٠ كيس قهوة مختصة من ١٤ محمصة: إثيوبيا، كولومبيا، البرازيل، اليمن وأكتر. متوفرة للبيع بفرع ساحة المحافظة، دمشق."
+    />
+    <meta name="theme-color" content="#0D6E74" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta
+      property="og:title"
+      content="SUB Crops — Specialty Coffee Beans, Damascus"
+    />
+    <meta
+      property="og:description"
+      content="30 specialty coffees from 14 roasters, for sale at SUB Coffee, Damascus."
+    />
+    <meta property="og:image" content="./images/crops-web/04.webp" />
+    <meta property="og:type" content="website" />
+  </head>
+  <body class="is-loading crops-page" data-title="crops.meta">
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="cursor" aria-hidden="true">
+      <span class="cursor-ring"><span class="cursor-label"></span></span>
+      <span class="cursor-dot"></span>
+    </div>
+
+    <div class="progress" aria-hidden="true"><span></span></div>
+
+    <!-- Curtain -->
+    <div class="curtain" aria-hidden="true">
+      <div class="curtain-inner">
+        <span class="curtain-word" data-i18n="nav.crops">المحاصيل</span>
+        <span class="curtain-count">0</span>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="nav">
+      <a
+        href="./index.html"
+        class="nav-brand"
+        aria-label="SUB Coffee"
+        data-logo
+        data-cursor="hover"
+      ></a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="./index.html" data-i18n="nav.home" data-cursor="hover"
+          >الرئيسية</a
+        >
+        <a href="./index.html#menu" data-i18n="nav.menu" data-cursor="hover"
+          >المنيو</a
+        >
+        <a
+          href="#collection"
+          class="is-active"
+          data-i18n="nav.crops"
+          data-cursor="hover"
+          >المحاصيل</a
+        >
+        <a href="./index.html#visit" data-i18n="nav.visit" data-cursor="hover"
+          >زورنا</a
+        >
+      </nav>
+      <div class="nav-actions">
+        <button
+          class="lang-btn"
+          type="button"
+          data-i18n="nav.lang"
+          data-cursor="hover"
+        >
+          EN
+        </button>
+        <a
+          class="btn btn-cream btn-sm magnetic"
+          target="_blank"
+          rel="noopener"
+          data-order
+          data-cursor="hover"
+          ><span data-i18n="crops.order.short">اطلب</span></a
+        >
+        <button
+          class="burger"
+          type="button"
+          aria-label="Menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="mobile-nav" aria-hidden="true">
+      <nav>
+        <a href="./index.html" data-i18n="nav.home">الرئيسية</a>
+        <a href="./index.html#menu" data-i18n="nav.menu">المنيو</a>
+        <a href="#collection" data-i18n="nav.crops">المحاصيل</a>
+        <a href="./index.html#visit" data-i18n="nav.visit">زورنا</a>
+      </nav>
+      <div class="mobile-nav-foot">
+        <span data-i18n="visit.hours">كل يوم · ٩:٠٠ ص — ١:٠٠ ليلاً</span>
+        <a
+          href="https://www.instagram.com/subcoffee1/"
+          target="_blank"
+          rel="noopener"
+          >@subcoffee1</a
+        >
+      </div>
+    </div>
+
+    <main>
+      <!-- Hero: a stack of bags that deals itself out as you scroll -->
+      <section class="ch" id="top">
+        <div class="ch-pin">
+          <div class="ch-glow" aria-hidden="true"></div>
+          <div class="ch-fan" data-fan aria-hidden="true"></div>
+          <div class="container ch-copy">
+            <p class="eyebrow">
+              <span class="dot"></span
+              ><span data-i18n="crops.eyebrow">محاصيل مختصة · للبيع عنّا</span>
+            </p>
+            <h1 class="ch-title" data-i18n-html="crops.title">
+              محاصيل<br /><em>متنوّعة</em>
+            </h1>
+            <p class="ch-sub" data-i18n="crops.sub"></p>
+            <dl class="ch-stats">
+              <div>
+                <dt data-num="count">0</dt>
+                <dd data-i18n="crops.count"></dd>
+              </div>
+              <div>
+                <dt data-num="roasters">0</dt>
+                <dd data-i18n="crops.roasters"></dd>
+              </div>
+              <div>
+                <dt data-num="origins">0</dt>
+                <dd data-i18n="crops.origins"></dd>
+              </div>
+            </dl>
+          </div>
+          <a href="#collection" class="hero-scroll" data-cursor="hover"
+            ><span class="line"></span
+            ><span data-i18n="crops.scroll">انزل واكتشف</span></a
+          >
+        </div>
+      </section>
+
+      <!-- Roaster names -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track" data-marquee></div>
+      </div>
+
+      <!-- Stage: pinned 3D coverflow driven by scroll -->
+      <section class="stage" id="collection" aria-label="Collection">
+        <div class="stage-pin">
+          <div class="stage-bg" aria-hidden="true"></div>
+          <div class="stage-ghost" aria-hidden="true">
+            <span data-ghost></span>
+          </div>
+          <div class="container stage-head">
+            <p class="kicker" data-i18n="crops.stage.kicker">المجموعة</p>
+            <div class="stage-count">
+              <span class="stage-num" data-stage-num>01</span>
+              <span class="stage-of" data-stage-of>/ 30</span>
+            </div>
+          </div>
+          <div class="stage-track" data-track></div>
+          <div class="container stage-info" data-info aria-live="polite"></div>
+          <div class="stage-ticks" data-ticks aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <!-- Origins -->
+      <section class="origins">
+        <div class="container">
+          <div class="section-head">
+            <p class="kicker" data-i18n="crops.origin.kicker">من وين جاية؟</p>
+            <h2 class="h2" data-i18n-html="crops.origin.title" data-split></h2>
+          </div>
+          <ol class="origin-list" data-origins></ol>
+        </div>
+      </section>
+
+      <!-- Shop grid -->
+      <section class="shop" id="shop">
+        <div class="container">
+          <div class="section-head">
+            <p class="kicker" data-i18n="crops.all.kicker">كل المحاصيل</p>
+            <h2 class="h2" data-i18n="crops.all.title" data-split>
+              اختار محصولك
+            </h2>
+          </div>
+          <div class="tabs" role="tablist" data-tabs></div>
+          <div class="shop-grid" data-grid></div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="crops-cta">
+        <div class="crops-cta-beans" aria-hidden="true"></div>
+        <div class="container crops-cta-inner">
+          <h2
+            class="crops-cta-title"
+            data-i18n-html="crops.cta.title"
+            data-split
+          ></h2>
+          <p data-i18n="crops.cta.sub"></p>
+          <div class="hero-ctas">
+            <a
+              class="btn btn-cream magnetic"
+              target="_blank"
+              rel="noopener"
+              data-order
+              data-cursor="hover"
+              ><i data-ig></i><span data-i18n="crops.cta.dm"></span
+            ></a>
+            <a
+              href="./index.html#visit"
+              class="btn btn-ghost magnetic"
+              data-cursor="hover"
+              ><span data-i18n="crops.cta.visit"></span><i data-arrow></i
+            ></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <p class="footer-line" data-i18n="footer.line"></p>
+          <div class="footer-links">
+            <a
+              href="https://www.instagram.com/subcoffee1/"
+              target="_blank"
+              rel="noopener"
+              data-cursor="hover"
+              ><i data-ig></i>Instagram</a
+            >
+            <a href="#top" data-cursor="hover" data-i18n="footer.top">لفوق</a>
+          </div>
+        </div>
+        <div class="footer-logo" data-logo></div>
+        <div class="footer-bottom">
+          <span>© <span data-year></span> SUB Coffee — صُب</span>
+          <span data-i18n="visit.hours"></span>
+          <span data-i18n="footer.made"></span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Product detail -->
+    <div class="sheet" data-sheet aria-hidden="true">
+      <div class="sheet-backdrop" data-close></div>
+      <div
+        class="sheet-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="sheet-name"
+      >
+        <button
+          class="sheet-close"
+          type="button"
+          data-close
+          data-i18n-aria="crops.close"
+          data-cursor="hover"
+        >
+          <span></span><span></span>
+        </button>
+        <div class="sheet-media" data-sheet-media></div>
+        <div class="sheet-body" data-sheet-body data-lenis-prevent></div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/crops.js"></script>
+  </body>
+</html>

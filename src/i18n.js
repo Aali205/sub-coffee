@@ -109,6 +109,41 @@ export const dict = {
     'footer.line': 'قهوة مختصة، مصبوبة بحب بقلب الشام.',
     'footer.made': 'صُنع بـ 🩵 في دمشق',
     'footer.top': 'لفوق',
+
+    'nav.crops': 'المحاصيل',
+    'nav.home': 'الرئيسية',
+    'crops.meta': 'محاصيل صُب | حبوب قهوة مختصة — دمشق',
+    'crops.eyebrow': 'محاصيل مختصة · للبيع عنّا',
+    'crops.title': 'محاصيل<br><em>متنوّعة</em>',
+    'crops.sub':
+      'أكياس قهوة مختصة من أحلى المحامص، منقّاة بإيدينا. خدها للبيت، واطحنها متل ما بتحب.',
+    'crops.scroll': 'انزل واكتشف',
+    'crops.count': 'محصول',
+    'crops.roasters': 'محمصة',
+    'crops.origins': 'بلد منشأ',
+    'crops.stage.kicker': 'المجموعة',
+    'crops.stage.notes': 'الإيحاءات',
+    'crops.alt': 'م',
+    'crops.origin.kicker': 'من وين جاية؟',
+    'crops.origin.title': 'حبّة من كل <em>زاوية</em> بالعالم',
+    'crops.all.kicker': 'كل المحاصيل',
+    'crops.all.title': 'اختار محصولك',
+    'crops.all': 'الكل',
+    'crops.view': 'التفاصيل',
+    'crops.order': 'اطلبه هلّق',
+    'crops.order.short': 'اطلب',
+    'crops.close': 'إغلاق',
+    'crops.d.roaster': 'المحمصة',
+    'crops.d.origin': 'المنشأ',
+    'crops.d.process': 'المعالجة',
+    'crops.d.alt': 'الارتفاع',
+    'crops.d.variety': 'السلالة',
+    'crops.d.weight': 'الوزن',
+    'crops.cta.title': 'لقيت <em>محصولك؟</em>',
+    'crops.cta.sub':
+      'ابعتلنا رسالة عالإنستغرام أو مرّ علينا بساحة المحافظة — منطحنلك ياه على طريقتك.',
+    'crops.cta.dm': 'راسلنا عالإنستغرام',
+    'crops.cta.visit': 'زورنا',
   },
 
   en: {
@@ -224,6 +259,41 @@ export const dict = {
       'Specialty coffee, poured with love in the heart of Damascus.',
     'footer.made': 'Made with 🩵 in Damascus',
     'footer.top': 'Top',
+
+    'nav.crops': 'Crops',
+    'nav.home': 'Home',
+    'crops.meta': 'SUB Crops | Specialty Coffee Beans — Damascus',
+    'crops.eyebrow': 'Specialty crops · for sale in store',
+    'crops.title': 'The<br><em>Crops</em>',
+    'crops.sub':
+      'Specialty beans from the region’s finest roasters, hand-picked by us. Take a bag home and grind it your way.',
+    'crops.scroll': 'Scroll to explore',
+    'crops.count': 'crops',
+    'crops.roasters': 'roasters',
+    'crops.origins': 'origins',
+    'crops.stage.kicker': 'The collection',
+    'crops.stage.notes': 'Tasting notes',
+    'crops.alt': 'm',
+    'crops.origin.kicker': 'Where it comes from',
+    'crops.origin.title': 'A bean from every <em>corner</em> of the world',
+    'crops.all.kicker': 'Every crop',
+    'crops.all.title': 'Pick your crop',
+    'crops.all': 'All',
+    'crops.view': 'Details',
+    'crops.order': 'Order now',
+    'crops.order.short': 'Order',
+    'crops.close': 'Close',
+    'crops.d.roaster': 'Roaster',
+    'crops.d.origin': 'Origin',
+    'crops.d.process': 'Process',
+    'crops.d.alt': 'Altitude',
+    'crops.d.variety': 'Variety',
+    'crops.d.weight': 'Weight',
+    'crops.cta.title': 'Found <em>your crop?</em>',
+    'crops.cta.sub':
+      'Send us a DM on Instagram or drop by Al-Muhafaza Square — we’ll grind it for your brew.',
+    'crops.cta.dm': 'Message us on Instagram',
+    'crops.cta.visit': 'Visit us',
   },
 };
 
@@ -249,7 +319,7 @@ export function applyLang(lang) {
   const html = document.documentElement;
   html.lang = lang;
   html.dir = lang === 'ar' ? 'rtl' : 'ltr';
-  document.title = t(lang, 'meta.title');
+  document.title = t(lang, document.body.dataset.title || 'meta.title');
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     el.textContent = t(lang, el.dataset.i18n);
   });

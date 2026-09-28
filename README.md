@@ -15,5 +15,8 @@ npm run dev
 - Menu, signature drinks, Instagram posts: `src/data.js`
 - Illustrations and logo: `src/svg.js`
 - Animations (GSAP + Lenis): `src/main.js`
+- Crops page (the shop's retail beans): `crops.html`, `src/crops.js`, `src/crops.css`
+  - Products: `src/crops-data.js`; photos in `public/images/crops-web/` (`NN.webp` + `NN-sm.webp`)
+  - To add a bag: drop a 2:3 photo in as WebP, then add one line to `crops` in `src/crops-data.js`
 
 Pushing to `main` deploys to GitHub Pages automatically.
