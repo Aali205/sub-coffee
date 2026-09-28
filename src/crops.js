@@ -596,19 +596,14 @@ function initAmbient() {
     ease: 'none',
   });
   loop.totalTime(loop.duration() * 50);
+  // quickTo reuses one tween per property instead of creating two per scroll event
   let dir = 1;
+  const speed = gsap.quickTo(loop, 'timeScale', { duration: 0.4 });
+  const skew = gsap.quickTo(track, 'skewX', { duration: 0.4 });
   lenis.on('scroll', ({ velocity }) => {
     if (Math.abs(velocity) > 0.2) dir = Math.sign(velocity);
-    gsap.to(loop, {
-      timeScale: dir * (1 + Math.min(Math.abs(velocity) * 0.12, 5)),
-      duration: 0.4,
-      overwrite: true,
-    });
-    gsap.to(track, {
-      skewX: gsap.utils.clamp(-8, 8, -velocity * 0.4),
-      duration: 0.4,
-      overwrite: 'auto',
-    });
+    speed(dir * (1 + Math.min(Math.abs(velocity) * 0.12, 5)));
+    skew(gsap.utils.clamp(-8, 8, -velocity * 0.4));
   });
 
   // The hero fan leans toward the pointer
@@ -758,37 +753,53 @@ function buildHero() {
 // Stage: vertical scroll drives a horizontal 3D coverflow. The card nearest the
 // centre becomes "active": background, ghost type and info panel follow it.
 function buildStage(rtl) {
-  const pin = $('.stage-pin');
+  const stageBg = $('.stage-bg');
   const track = $('[data-track]');
   const slots = $$('.s-slot', track);
   const cards = slots.map((s) => $('.s-card', s));
   const shades = slots.map((s) => $('.s-shade', s));
   const ticks = $$('[data-ticks] i');
   const distance = () => Math.max(0, track.scrollWidth - innerWidth);
+  const trackX = () => gsap.getProperty(track, 'x');
 
+  // Geometry is measured once per refresh; each frame is then pure arithmetic on
+  // the track's x, so scrolling never forces a layout read.
+  let base = 0;
+  let centers = [];
+  let slotW = 1;
+  const measure = () => {
+    base = track.getBoundingClientRect().left - trackX();
+    centers = slots.map((s) => s.offsetLeft + s.offsetWidth / 2);
+    slotW = slots[0].offsetWidth;
+  };
+
+  const hidden = slots.map(() => false);
   const layout = () => {
-    const vc = innerWidth / 2;
+    const x = trackX();
+    const vc = document.documentElement.clientWidth / 2;
     let best = 0;
     let bestD = Infinity;
-    slots.forEach((slot, i) => {
-      const r = slot.getBoundingClientRect();
-      const d = (r.left + r.width / 2 - vc) / (r.width * 1.05);
+    for (let i = 0; i < slots.length; i++) {
+      const d = (base + x + centers[i] - vc) / (slotW * 1.05);
       const ad = Math.abs(d);
       if (ad < bestD) {
         bestD = ad;
         best = i;
       }
-      if (ad > 5) return; // off-screen, leave it alone
+      // Cards well outside the view are hidden so they drop their GPU layers
+      const off = ad > 3.4;
+      if (off !== hidden[i]) {
+        hidden[i] = off;
+        cards[i].style.visibility = off ? 'hidden' : '';
+      }
+      if (off) continue;
       const near = Math.min(ad, 1);
-      gsap.set(cards[i], {
-        rotateY: gsap.utils.clamp(-55, 55, -d * 32),
-        z: -Math.min(ad, 4) * 160,
-        y: near * 26,
-        scale: 1 + (1 - near) * 0.08,
-        transformPerspective: 1300,
-      });
-      shades[i].style.opacity = Math.min(ad * 0.32, 0.72);
-    });
+      const rot = Math.max(-55, Math.min(55, -d * 32));
+      cards[i].style.transform =
+        `perspective(1300px) translate3d(0, ${(near * 26).toFixed(1)}px, ${(-Math.min(ad, 4) * 160).toFixed(1)}px) ` +
+        `rotateY(${rot.toFixed(2)}deg) scale(${(1 + (1 - near) * 0.08).toFixed(3)})`;
+      shades[i].style.opacity = Math.min(ad * 0.32, 0.72).toFixed(3);
+    }
     setActive(best);
   };
 
@@ -799,8 +810,9 @@ function buildStage(rtl) {
     const c = crops[i];
     $('[data-stage-num]').textContent = fmt(i + 1, 2);
     ticks.forEach((tk, k) => tk.classList.toggle('is-on', k === i));
-    gsap.to(pin, {
-      '--tone': c.tone,
+    // A flat colour fill is cheap to repaint; the lighting sits on a static layer above it
+    gsap.to(stageBg, {
+      backgroundColor: c.tone,
       duration: first ? 0 : 0.9,
       ease: 'power2.out',
       overwrite: 'auto',
@@ -840,7 +852,7 @@ function buildStage(rtl) {
           yPercent: 0,
           duration: 0.8,
           ease: 'expo.out',
-          overwrite: true,
+          overwrite: 'auto',
         },
       );
   };
@@ -856,7 +868,10 @@ function buildStage(rtl) {
       pin: '.stage-pin',
       scrub: 1,
       invalidateOnRefresh: true,
-      onRefresh: layout,
+      onRefresh: () => {
+        measure();
+        layout();
+      },
     },
   });
   gsap.to('.stage-ghost span', {
@@ -878,6 +893,7 @@ function buildStage(rtl) {
     ease: 'expo.out',
     scrollTrigger: { trigger: '.stage', start: 'top 70%' },
   });
+  measure();
   layout();
 }
 

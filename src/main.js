@@ -519,19 +519,14 @@ function initAmbient() {
     ease: 'none',
   });
   loop.totalTime(loop.duration() * 50);
+  // quickTo reuses one tween per property instead of creating two per scroll event
   let dir = 1;
+  const speed = gsap.quickTo(loop, 'timeScale', { duration: 0.4 });
+  const skew = gsap.quickTo(track, 'skewX', { duration: 0.4 });
   lenis.on('scroll', ({ velocity }) => {
     if (Math.abs(velocity) > 0.2) dir = Math.sign(velocity);
-    gsap.to(loop, {
-      timeScale: dir * (1 + Math.min(Math.abs(velocity) * 0.12, 5)),
-      duration: 0.4,
-      overwrite: true,
-    });
-    gsap.to(track, {
-      skewX: gsap.utils.clamp(-8, 8, -velocity * 0.4),
-      duration: 0.4,
-      overwrite: 'auto',
-    });
+    speed(dir * (1 + Math.min(Math.abs(velocity) * 0.12, 5)));
+    skew(gsap.utils.clamp(-8, 8, -velocity * 0.4));
   });
 }
 

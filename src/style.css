@@ -137,31 +137,34 @@ em {
 /* =========================================================
    Grain, cursor, progress
    ========================================================= */
+/* Film grain. Kept just larger than the viewport (a 2× layer was a huge GPU
+   texture on big screens) and only jittered by whole tiles-worth of pixels. */
 .grain {
   position: fixed;
-  inset: -50%;
+  inset: -110px;
   z-index: 90;
   pointer-events: none;
   opacity: 0.07;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation: grain 1s steps(6) infinite;
+  will-change: transform;
 }
 @keyframes grain {
   0%,
   100% {
-    transform: translate(0, 0);
+    transform: translate3d(0, 0, 0);
   }
   20% {
-    transform: translate(-5%, 3%);
+    transform: translate3d(-60px, 40px, 0);
   }
   40% {
-    transform: translate(4%, -6%);
+    transform: translate3d(50px, -80px, 0);
   }
   60% {
-    transform: translate(-3%, 7%);
+    transform: translate3d(-40px, 90px, 0);
   }
   80% {
-    transform: translate(6%, -2%);
+    transform: translate3d(80px, -30px, 0);
   }
 }
 
@@ -191,7 +194,7 @@ em {
     height: 8px;
     margin: -4px 0 0 -4px;
     background: var(--cream);
-    mix-blend-mode: difference;
+    box-shadow: 0 0 0 1.5px rgba(8, 26, 24, 0.45);
   }
   .cursor-ring {
     width: 44px;
@@ -440,9 +443,8 @@ em {
 }
 .nav.is-scrolled {
   height: 68px;
-  background: rgba(14, 43, 40, 0.88);
-  backdrop-filter: blur(14px) saturate(1.4);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  /* Solid rather than backdrop-blurred: a full-width blur re-runs every scroll frame */
+  background: rgba(14, 43, 40, 0.96);
 }
 .nav.is-hidden {
   transform: translateY(-100%);

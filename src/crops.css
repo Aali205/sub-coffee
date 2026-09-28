@@ -71,6 +71,7 @@
   );
   opacity: 0.6;
   pointer-events: none;
+  will-change: transform, opacity;
 }
 .ch-copy {
   position: relative;
@@ -163,7 +164,6 @@
 
 /* Stage (coverflow) --------------------------------------- */
 .stage-pin {
-  --tone: #0d6e74;
   position: relative;
   height: 100vh;
   height: 100svh;
@@ -176,23 +176,26 @@
 .stage-bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(
-      60% 55% at 50% 42%,
-      color-mix(in oklab, var(--tone) 62%, #0b1716) 0%,
-      transparent 100%
-    ),
-    color-mix(in oklab, var(--tone) 24%, #071513);
+  background-color: #0d6e74; /* tweened to the active bag's tone */
 }
+/* Lighting and light-stripes never change, so they live on their own cached layer
+   and the colour underneath is the only thing repainted. */
 .stage-bg::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    100deg,
-    rgba(255, 220, 170, 0.045) 0 12%,
-    transparent 12% 20%
-  );
+  background:
+    repeating-linear-gradient(
+      100deg,
+      rgba(255, 220, 170, 0.045) 0 12%,
+      transparent 12% 20%
+    ),
+    radial-gradient(
+      60% 55% at 50% 42%,
+      rgba(11, 23, 22, 0.38) 0%,
+      rgba(7, 21, 19, 0.8) 100%
+    );
+  will-change: transform;
 }
 .stage-ghost {
   position: absolute;
@@ -213,6 +216,7 @@
   color: transparent;
   -webkit-text-stroke: 1.5px rgba(255, 227, 203, 0.16);
   letter-spacing: -0.03em;
+  will-change: transform, opacity;
 }
 .stage-head {
   position: relative;
@@ -263,11 +267,22 @@
   overflow: hidden;
   isolation: isolate;
   box-shadow:
-    0 50px 90px -40px rgba(0, 0, 0, 0.85),
+    0 40px 60px -34px rgba(0, 0, 0, 0.85),
     0 0 0 1px rgba(255, 227, 203, 0.1);
-  -webkit-box-reflect: below 10px
-    linear-gradient(transparent 78%, rgba(255, 255, 255, 0.14));
   will-change: transform;
+}
+/* Soft floor shadow — a plain gradient, painted once with the track */
+.s-slot {
+  position: relative;
+}
+.s-slot::after {
+  content: '';
+  position: absolute;
+  inset-inline: 8%;
+  top: calc(100% + 14px);
+  height: 34px;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.45), transparent);
+  pointer-events: none;
 }
 .s-card img {
   width: 100%;
@@ -284,6 +299,7 @@
   background: #051110;
   opacity: 0.7;
   pointer-events: none;
+  will-change: opacity;
 }
 .s-tag {
   position: absolute;
@@ -294,9 +310,7 @@
   letter-spacing: 0.06em;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
-  background: rgba(8, 26, 24, 0.55);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(8, 26, 24, 0.78);
   color: var(--cream);
 }
 .stage-info {
@@ -839,7 +853,6 @@
   }
   .s-card {
     border-radius: 18px;
-    -webkit-box-reflect: unset;
   }
   .stage-info {
     min-height: 8.5rem;
